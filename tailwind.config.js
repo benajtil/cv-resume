@@ -6,3 +6,19 @@ export default {
   },
   plugins: [],
 };
+module.exports = {
+  theme: {
+    extend: {
+      keyframes: {
+        ripple: {
+          "0%": { transform: "scale(0.9)", opacity: "0.7" },
+          "100%": { transform: "scale(1.5)", opacity: "0" },
+        },
+      },
+      animation: {
+        ripple: "ripple 2s infinite ease-out",
+      },
+    },
+  },
+  plugins: [],
+};

@@ -1,14 +1,23 @@
 import { BrowserRouter } from "react-router-dom";
-import { Hero, Header, Project, Resume, Skills, About } from "./components";
+import {
+  Hero,
+  Header,
+  Projects,
+  Resume,
+  Skills,
+  About,
+  Contact,
+} from "./components";
 const App = () => {
   return (
     <BrowserRouter>
       <Hero />
       <Header />
-      <Project />
-      <Resume />
-      <Skills />
       <About />
+      <Resume />
+      <Projects />
+      <Skills />
+      <Contact />
     </BrowserRouter>
   );
 };

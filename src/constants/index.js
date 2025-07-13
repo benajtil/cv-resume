@@ -11,9 +11,49 @@ const person = {
       return `${this.fname} ${this.lname}`;
     },
   },
+  photo: {
+    img: "../src/assets/bg1.jpg",
+    border: "../src/assets/border.gif",
+  },
+  bio: {
+    birth: "October &apos;82",
+    citizenship: "Filipino",
+    location: {
+      country: "Philippines",
+      province: "South Cotabato",
+      city: "Tupi",
+    },
+  },
+
+  socials: {
+    github: {
+      name: "github",
+      label: "Github",
+      title: "Github Profile",
+      icon: "fab fa-github",
+      url: "https://github.com/benajtil",
+    },
+    facebook: {
+      name: "facebook",
+      label: "Facebook",
+      title: "facebook Profile",
+      icon: "fab fa-facebook",
+      url: "https://www.facebook.com/1.AjEspiritu09/",
+    },
+    linkedin: {
+      name: "linkedin",
+      label: "LinkedIn",
+      title: "LinkedIn Profile",
+      icon: "fab fa-linkedin",
+      url: "https://www.linkedin.com/in/ben-florence-aj-til-7217a729a/",
+    },
+  },
 };
 
-const info = {};
+const info = {
+  titleDesc:
+    "A passionate and creative Full-Stack Developer with a strong foundation in software engineering, design, and innovation. Dedicated to building responsive, user-focused web solutions with clean code and thoughtful design.",
+};
 
 const typedTitle = {
   title: [
@@ -23,4 +63,46 @@ const typedTitle = {
     { text: "CS GRADUATE", color: "text-green-400" },
   ],
 };
-export { person, scope, tagline, typedTitle };
+
+const navLink = [
+  {
+    id: "home",
+    name: "Home",
+  },
+  {
+    id: "resume",
+    name: "Resume",
+  },
+  {
+    id: "skills",
+    name: "Skills",
+  },
+  {
+    id: "projects",
+    name: "Projects",
+  },
+  {
+    id: "contact",
+    name: "Contact",
+  },
+];
+const about = {
+  bio: {
+    objective:
+      "Versatile technologist in (ENTRY LEVEL)full-stack JavaScript (React, Node.js) and PHP development, with a keen eye for UI/UX and graphic design. Experienced building responsive web and hybrid mobile apps that sync offline data. Hands-on IT technician and PC builder who also prototypes microcontroller-based systems. Ideal for roles bridging software engineering, front-end design, and hardware integration.",
+    scopes: [
+      { text: "Full Stack Developer" },
+      { text: "(Entry) Mobile App Developer" },
+      { text: "Frontend/UI Developer" },
+      { text: "Graphic Designer" },
+      { text: "2D assets Designer" },
+      { text: "IT Techinician" },
+      { text: "PC Builder" },
+      { text: "Microcontroller-Based Vending System Integrator" },
+    ],
+  },
+};
+
+const resume = {};
+
+export { person, scope, tagline, typedTitle, info, navLink, about };
