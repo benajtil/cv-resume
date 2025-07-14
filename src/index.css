@@ -8,6 +8,7 @@
   --soft-blue: #e0f7fa;
   --soft-pink: #ffe6e6;
   --border-color: #ddd;
+
 }
 body {
   background-color: var(--background);
@@ -28,7 +29,24 @@ body {
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+.photo-transition {
+  border-radius: 0.375rem;          
+  transition: border-radius 2s ease-in-out;
+}
 
+
+.photo-transition:hover {
+  border-radius: 50%;             
+}
+.photo-border {
+  opacity: 0;
+  animation: pulse-border 3s ease-in-out infinite;
+}
+
+@keyframes pulse-border {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
 .violet-gradient {
   background: #804dee;
   background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
@@ -61,6 +79,9 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* Marquee container: double-wide flex, scrolls its first half out of view */
+
+
 .green-text-gradient {
   background: #11998e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -76,6 +97,7 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 .blue-text-gradient {
   /* background: -webkit-linear-gradient(#eee, #333); */

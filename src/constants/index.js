@@ -16,12 +16,15 @@ const person = {
     border: "../src/assets/border.gif",
   },
   bio: {
-    birth: "October &apos;82",
+    birth: "October 9, 2002",
     citizenship: "Filipino",
     location: {
       country: "Philippines",
       province: "South Cotabato",
       city: "Tupi",
+      get loc() {
+        return `${this.city} , ${this.province} , ${this.country}`;
+      },
     },
   },
 
@@ -102,7 +105,25 @@ const about = {
     ],
   },
 };
+import animateLogo from "../assets/utilities/animate.png";
+import cLogo from "../assets/utilities/c.png";
+import cppLogo from "../assets/utilities/c++.png";
+import dartLogo from "../assets/utilities/dart.png";
+import javaLogo from "../assets/utilities/java.png";
+import jsLogo from "../assets/utilities/js.png";
+import photoshopLogo from "../assets/utilities/photoshop.png";
+import premierLogo from "../assets/utilities/premier.png";
+import pythonLogo from "../assets/utilities/python.png";
+const logos = [
+  animateLogo,
+  cLogo,
+  cppLogo,
+  dartLogo,
+  javaLogo,
+  jsLogo,
+  photoshopLogo,
+  premierLogo,
+  pythonLogo,
+];
 
-const resume = {};
-
-export { person, scope, tagline, typedTitle, info, navLink, about };
+export { person, scope, tagline, typedTitle, info, navLink, about, logos };
