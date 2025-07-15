@@ -1,15 +1,33 @@
-import React, { useRef, useEffect } from "react";
+import React, { useState, forwardRef, useRef, useEffect } from "react";
 import {
   FaCheck,
   FaUser,
   FaBirthdayCake,
   FaHome,
   FaGlobe,
+  FaDownload,
 } from "react-icons/fa";
 import { about, person } from "../constants";
 import { logos } from "../constants";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  Slide,
+} from "@mui/material";
+import resumePdf from "../assets/CV.pdf";
 
 export default function About() {
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const Transition = forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
   const scopes = about.bio.scopes;
   const half = Math.ceil(scopes.length / 2);
   const leftColumn = scopes.slice(0, half);
@@ -80,13 +98,13 @@ export default function About() {
         </div>
       </div>
       {}
-      <div className="container mx-auto px-6 md:px-8 flex flex-col md:flex-row gap-12">
+      <div className="container mx-auto px-6 md:px-8 md:pl-20 flex flex-col md:flex-row gap-12">
         {}
-        <div className="flex-1 space-y-12 ml-30">
+        <div className="flex-1 space-y-12">
           {}
           <div>
             <h2 className="text-2xl font-semibold mb-4">OVERVIEW</h2>
-            <p className="text-[15px] leading-relaxed max-w-2xl">
+            <p className="text-[15px] leading-relaxed max-w-4xl text-justify">
               {about.bio.objective}
             </p>
           </div>
@@ -94,7 +112,7 @@ export default function About() {
           {}
           <div>
             <h2 className="text-2xl font-semibold mb-4">SCOPES</h2>
-            <div className="flex gap-16">
+            <div className="flex gap-20 mx-4 max-w-4xl">
               <ul className="space-y-3">
                 {leftColumn.map((item, i) => (
                   <li key={i} className="flex items-center gap-2">
@@ -112,6 +130,13 @@ export default function About() {
                 ))}
               </ul>
             </div>
+          </div>
+          {}
+          <div className="text-2xl font-semibold">
+            <h2>ABOUT ME</h2>
+            <p className="text-[15px] max-w-4xl text-justify leading-7 font-normal mt-5 whitespace-pre-line">
+              {about.bio.aboutme}
+            </p>
           </div>
         </div>
 
@@ -136,9 +161,9 @@ export default function About() {
             />
           </div>
           {}
-          <div className="p-6 mr-5">
+          <div className="p-6 mr-5 ">
             <ul className="divide-y divide-gray-200 text-sm text-gray-700">
-              <li className="flex items-center py-3">
+              <li className="flex items-center py-3 ">
                 <FaUser className="text-green-500 w-5 h-5 mr-3" />
                 <span className="font-medium w-28">Name:</span>
                 <span>
@@ -165,6 +190,54 @@ export default function About() {
               </li>
             </ul>
           </div>
+          {}
+          <>
+            <div className="flex justify-center pr-30">
+              <div
+                className="mx-auto transition-transform duration-100 ease-in-out hover:scale-105 cursor-pointer hover:bg-green-200 hover:rounded-3xl"
+                onClick={handleClickOpen}
+              >
+                <div className="border-2 border-green-500 rounded-4xl flex items-center justify-center h-10 w-40">
+                  <span className="font-semibold">RESUME</span>
+                  <FaDownload className="text-green-500 w-5 h-5 ml-2" />
+                </div>
+              </div>
+              <Dialog
+                open={open}
+                keepMounted
+                onClose={handleClose}
+                maxWidth="lg"
+                fullWidth
+              >
+                <DialogTitle>My Resume</DialogTitle>
+                <DialogContent dividers>
+                  {}
+                  <iframe
+                    src={`${resumePdf}#toolbar=0&navpanes=0&scrollbar=0`}
+                    title="Resume PDF"
+                    style={{
+                      width: "100%",
+                      height: "80vh",
+                      border: "none",
+                    }}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  {}
+                  <Button
+                    component="a"
+                    href={resumePdf}
+                    download
+                    color="primary"
+                    startIcon={<FaDownload />}
+                  >
+                    Download
+                  </Button>
+                  <Button onClick={() => setOpen(false)}>Close</Button>
+                </DialogActions>
+              </Dialog>
+            </div>
+          </>
         </div>
       </div>
     </section>

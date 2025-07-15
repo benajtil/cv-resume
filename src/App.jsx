@@ -3,7 +3,7 @@ import {
   Hero,
   Header,
   Projects,
-  Resume,
+  Timeline,
   Skills,
   About,
   Contact,
@@ -14,7 +14,7 @@ const App = () => {
       <Hero />
       <Header />
       <About />
-      <Resume />
+      <Timeline />
       <Projects />
       <Skills />
       <Contact />

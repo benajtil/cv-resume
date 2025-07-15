@@ -2,7 +2,7 @@
 
 @import 'tailwindcss';
 :root {
-  --background: #f5f4f3;
+  --background: #ffffff;
   --foreground: #2c2c2c;
   --accent: #fff9f0;
   --soft-blue: #e0f7fa;
@@ -34,6 +34,37 @@ body {
   transition: border-radius 2s ease-in-out;
 }
 
+/* base for every card */
+.timeline-card {
+  position: relative;
+  background-color: white;
+}
+
+/* left‐side cards: arrow on the right */
+.timeline-card.left::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;          /* half of the before‐width */
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  transform: translateY(-50%) rotate(45deg);
+  box-shadow: -1px -1px 1px rgba(0,0,0,0.1);
+}
+
+/* right‐side cards: arrow on the left */
+.timeline-card.right::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  transform: translateY(-50%) rotate(45deg);
+  box-shadow: 1px -1px 1px rgba(0,0,0,0.1);
+}
 
 .photo-transition:hover {
   border-radius: 50%;             

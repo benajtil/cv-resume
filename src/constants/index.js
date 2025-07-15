@@ -91,6 +91,12 @@ const navLink = [
 ];
 const about = {
   bio: {
+    aboutme: `Hey, I’m Ben Florence A.J. Til, a Computer Science graduate from Notre Dame of Marbel University (NDMU) and a self-taught tech enthusiast. Back in high school, I got curious about how computers and bots worked. With zero coding knowledge, I started by copying existing open-source projects, tweaking them, breaking things, fixing them — and somehow making them work. I ended up building my own music bots, RSS APIs, and even Discord bots with custom commands. I also managed a small private server and became a database manager, all while learning things the hard way.
+
+    That curiosity never stopped. I’ve built PCs, fixed electronics, repaired phones, wired WiFi-connected vending machines — all without formal training in electronics. I didn’t know anything about amperes or circuits, I just figured things out by doing.
+\n I may not always feel like I fully “fit” into a role right away, but one thing I’m sure of: I’ll learn it, adapt, and make it work.
+
+`,
     objective:
       "Versatile technologist in (ENTRY LEVEL)full-stack JavaScript (React, Node.js) and PHP development, with a keen eye for UI/UX and graphic design. Experienced building responsive web and hybrid mobile apps that sync offline data. Hands-on IT technician and PC builder who also prototypes microcontroller-based systems. Ideal for roles bridging software engineering, front-end design, and hardware integration.",
     scopes: [
@@ -126,4 +132,63 @@ const logos = [
   pythonLogo,
 ];
 
-export { person, scope, tagline, typedTitle, info, navLink, about, logos };
+const timeline = {
+  education: [
+    {
+      school: "Notre Dame of Marbel University (NDMU)",
+      degree: "Computer Science (Degree Holder)",
+      start: "2021",
+      graduated: "2025",
+      description:
+        "Completed a rigorous curriculum in algorithms, data structures, and software engineering.",
+    },
+  ],
+  experience: [
+    {
+      title: "Graphic Designer",
+      start: "2016",
+      end: "Present",
+      description:
+        "Design on-brand visual assets—logos, banners, web graphics—and 2D game sprites using Photoshop & Illustrator.",
+    },
+    {
+      title: "2D Assets Designer",
+      start: "2016",
+      end: "2020",
+      description:
+        "Created UI icons, marketing banners, and 2D sprites for web projects and Roblox games.",
+    },
+    {
+      title: "IT Technician",
+      start: "2020",
+      end: "Present",
+      description:
+        "Assembled custom PCs, managed networks, troubleshooted hardware/software issues, and provided end-user support.",
+    },
+    {
+      title: "PC Builder",
+      start: "2020",
+      end: "Present",
+      description:
+        "Built performance desktop rigs from the ground up, selecting optimal components and ensuring system stability.",
+    },
+    {
+      title: "Full-Stack Engineer Internship",
+      start: "June 2024",
+      end: "August 2024",
+      description:
+        "Contributed to full-stack features, wrote unit tests, and collaborated with senior engineers on code reviews.",
+    },
+  ],
+};
+export {
+  person,
+  scope,
+  tagline,
+  typedTitle,
+  info,
+  navLink,
+  about,
+  logos,
+  timeline,
+};
