@@ -120,6 +120,7 @@ import jsLogo from "../assets/utilities/js.png";
 import photoshopLogo from "../assets/utilities/photoshop.png";
 import premierLogo from "../assets/utilities/premier.png";
 import pythonLogo from "../assets/utilities/python.png";
+import illustratorLogo from "../assets/utilities/Illustrator.png";
 const logos = [
   animateLogo,
   cLogo,
@@ -130,6 +131,7 @@ const logos = [
   photoshopLogo,
   premierLogo,
   pythonLogo,
+  illustratorLogo,
 ];
 
 const timeline = {
@@ -149,7 +151,11 @@ const timeline = {
       start: "2016",
       end: "Present",
       description:
-        "Design on-brand visual assets—logos, banners, web graphics—and 2D game sprites using Photoshop & Illustrator.",
+        "Design on-brand visual assets logos, banners, web graphics—and 2D game sprites using Photoshop & Illustrator.",
+      logo: [photoshopLogo, illustratorLogo],
+
+      certificate: "",
+      modal: "",
     },
     {
       title: "2D Assets Designer",
@@ -157,6 +163,9 @@ const timeline = {
       end: "2020",
       description:
         "Created UI icons, marketing banners, and 2D sprites for web projects and Roblox games.",
+      logo: "",
+      certificate: "",
+      modal: "",
     },
     {
       title: "IT Technician",
@@ -164,6 +173,9 @@ const timeline = {
       end: "Present",
       description:
         "Assembled custom PCs, managed networks, troubleshooted hardware/software issues, and provided end-user support.",
+      logo: "",
+      certificate: "",
+      modal: "",
     },
     {
       title: "PC Builder",
@@ -171,6 +183,9 @@ const timeline = {
       end: "Present",
       description:
         "Built performance desktop rigs from the ground up, selecting optimal components and ensuring system stability.",
+      logo: "",
+      certificate: "",
+      modal: "",
     },
     {
       title: "Full-Stack Engineer Internship",
@@ -178,6 +193,9 @@ const timeline = {
       end: "August 2024",
       description:
         "Contributed to full-stack features, wrote unit tests, and collaborated with senior engineers on code reviews.",
+      logo: "",
+      certificate: "",
+      modal: "",
     },
   ],
 };
