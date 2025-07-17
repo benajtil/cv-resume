@@ -19,6 +19,9 @@ import {
 } from "@mui/material";
 import resumePdf from "../assets/CV.pdf";
 
+import profilePic from "../assets/bg1.jpg";
+import profileBorder from "../assets/border.gif";
+
 export default function About() {
   const [open, setOpen] = useState(false);
   const handleClickOpen = () => setOpen(true);
@@ -60,7 +63,7 @@ export default function About() {
   }, []);
 
   return (
-    <section className="w-full bg-white pt-16 pb-16 overflow-hidden">
+    <section id="about" className="pt-16 pb-16 bg-10">
       {}
       <div className="text-center mb-10">
         <h1 className="text-6xl font-extrabold">BIO</h1>
@@ -145,13 +148,13 @@ export default function About() {
           <div className="relative w-64 h-64 overflow-hidden mx-auto group mr-40">
             {}
             <img
-              src={person.photo.img}
+              src={profilePic}
               alt={person.name}
               className="w-full h-full object-cover photo-transition"
             />
             {}
             <img
-              src={person.photo.border}
+              src={profileBorder}
               alt=""
               className=" pointer-events-none
             absolute inset-0 w-full h-full object-cover

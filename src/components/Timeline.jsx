@@ -1,7 +1,7 @@
 import React from "react";
 import { timeline } from "../constants";
 
-export default function Timeline() {
+const Timeline = () => {
   const { education, experience } = timeline;
 
   const renderEntry = (entry, i, isEducation = false) => {
@@ -21,7 +21,7 @@ export default function Timeline() {
           <>
             {}
             <div className="col-span-4 pr-8 text-right">
-              <div className="inline-block bg-gray-200 p-6 shadow-lg rounded-lg transition-all ease-in-out hover:bg-amber-200 hover:scale-105">
+              <div className="inline-block bg-gray-200 p-6 shadow-lg rounded-lg transition-all ease-in-out hover:bg-green-300 hover:scale-105">
                 <div className="text-sm text-gray-500">{date}</div>
                 {}
                 <div className="flex justify-end space-x-4">
@@ -67,7 +67,7 @@ export default function Timeline() {
 
             {}
             <div className="col-span-4 pl-8 text-left">
-              <div className="inline-block bg-gray-200 p-6 shadow-lg rounded-lg transition-all ease-in-out hover:bg-amber-200 hover:scale-105">
+              <div className="inline-block bg-gray-200 p-6 shadow-lg rounded-lg transition-all ease-in-out hover:bg-green-300 hover:scale-105">
                 <div className="text-sm text-gray-500">{date}</div>
 
                 {logo && (
@@ -123,4 +123,6 @@ export default function Timeline() {
       </div>
     </div>
   );
-}
+};
+
+export default Timeline;

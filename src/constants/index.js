@@ -69,21 +69,22 @@ const typedTitle = {
 
 const navLink = [
   {
-    id: "home",
-    name: "Home",
+    id: "about",
+    name: "About",
   },
   {
-    id: "resume",
-    name: "Resume",
-  },
-  {
-    id: "skills",
-    name: "Skills",
+    id: "timeline",
+    name: "Timeline",
   },
   {
     id: "projects",
     name: "Projects",
   },
+  {
+    id: "skills",
+    name: "Skills",
+  },
+
   {
     id: "contact",
     name: "Contact",
@@ -122,6 +123,10 @@ import premierLogo from "../assets/utilities/premier.png";
 import pythonLogo from "../assets/utilities/python.png";
 import illustratorLogo from "../assets/utilities/Illustrator.png";
 import ndmuLogo from "../assets/utilities/NDMU.avif";
+import lakbayImg from "../assets/projects/lakbaymarista.png";
+import customerImg from "../assets/projects/customersegmentation.png";
+import no404 from "../assets/projects/404.png";
+
 const logos = [
   animateLogo,
   cLogo,
@@ -204,9 +209,61 @@ const timeline = {
   ],
 };
 
-const projects = {
-  projects: {},
-};
+const projects = [
+  {
+    title: "Lakbay Marista",
+    description:
+      "Lakbay Marista is your one‑stop digital travel guide to the most captivating sights around the Mindanao region. From the serene shores of Lake Holon and the thundering cascades of Seven Falls, to hidden cultural monuments and family‑friendly resorts, Lakbay Marista curates each destination with beautiful photography, authentic local insights, and real traveler ratings. Use our intuitive filters—Popular, Featured, New, or All—to quickly discover the perfect spot for your next adventure, then dive into detailed location info and reviews so you can plan your trip with confidence. Whether you’re a weekend wanderer or an off‑the‑beaten‑path explorer, Lakbay Marista brings the best of South Cotabato province right to your fingertips.",
+    url: {
+      github: "https://github.com/benajtil/lakbaymarista-tourist",
+      live: "lakbaymarista.online",
+    },
+    image: lakbayImg,
+    languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "MySQL"],
+
+    live: true,
+  },
+  {
+    title: "Customer Segmentation",
+    description:
+      "Developed as part of our Thesis at Notre Dame of Marbel University, this PHP‑powered web application delivers a comprehensive, responsive admin dashboard that lets you drill into every table and record—customers, orders, products, users—and filter, sort, search, or export on demand; it also displays real‑time site metrics such as total customers, sales, and active sessions, while providing full user administration to create, edit, or revoke access for any number of admin or staff accounts. Beyond the LAMP‑stack front end, the repository includes a Python module built on pandas and scikit‑learn that preprocesses raw transaction data and applies the DBSCAN algorithm—using both RFM and LRFMP feature sets—to uncover natural customer clusters, which can then be visualized or fed back into the PHP dashboard for targeted marketing campaigns. Although the system has been discontinued following our successful thesis defense, it remains a complete full‑stack illustration of how to integrate a classic PHP/MySQL dashboard with a modern data‑science backend for real‑world customer‑segmentation workflows.",
+    url: {
+      github:
+        "https://github.com/benajtil/Customer-Segmentation-in-Online-Retail-using-DBSCANS.git",
+      live: "lakbaymarista.online",
+    },
+    image: customerImg,
+    languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "PYTHON", "MySQL"],
+
+    live: false,
+  },
+  {
+    title: "Tabulation System",
+    description:
+      "The Tnalak Festival Tabulation System is a PHP‑based web application designed to manage and score entries in both the Float Competition and Civic Competition. It supports local data storage via SQLite for offline use and central synchronization with MySQL for permanent record‑keeping. Administrators can log in to manage contestants, judges, and scoring criteria, then generate printed score sheets and final ranking reports.",
+    url: {
+      github: "https://github.com/benajtil/tnalak-admin.git",
+      live: "lakbaymarista.online",
+    },
+    image: no404,
+    languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "SQLite", "MySQL"],
+
+    live: false,
+  },
+  {
+    title: "Lakbay Marista",
+    description:
+      "Lakbay Marista is your one‑stop digital travel guide to the most captivating sights around the Mindanao region. From the serene shores of Lake Holon and the thundering cascades of Seven Falls, to hidden cultural monuments and family‑friendly resorts, Lakbay Marista curates each destination with beautiful photography, authentic local insights, and real traveler ratings. Use our intuitive filters—Popular, Featured, New, or All—to quickly discover the perfect spot for your next adventure, then dive into detailed location info and reviews so you can plan your trip with confidence. Whether you’re a weekend wanderer or an off‑the‑beaten‑path explorer, Lakbay Marista brings the best of South Cotabato province right to your fingertips.",
+    url: {
+      github: "https://github.com/benajtil/lakbaymarista-tourist",
+      live: "lakbaymarista.online",
+    },
+    image: lakbayImg,
+    languages: ["PHP", "HTML", "CSS", "JAVASCRIPT"],
+
+    live: true,
+  },
+];
 export {
   person,
   scope,
