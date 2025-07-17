@@ -32,7 +32,7 @@ export default function Timeline() {
                           key={idx}
                           src={lg}
                           alt={`${title} logo`}
-                          className="w-auto h-8 object-contain"
+                          className="w-auto h-8 object-contain px-1.5"
                         />
                       ))}
                     </div>
@@ -71,7 +71,7 @@ export default function Timeline() {
                 <div className="text-sm text-gray-500">{date}</div>
 
                 {logo && (
-                  <div className="flex justify-center my-2">
+                  <div className="flex my-2 inset-y-0 right-0 flex-shrink-0 items-center h-auto w-9">
                     <img
                       src={logo}
                       alt={`${title} logo`}

@@ -121,6 +121,7 @@ import photoshopLogo from "../assets/utilities/photoshop.png";
 import premierLogo from "../assets/utilities/premier.png";
 import pythonLogo from "../assets/utilities/python.png";
 import illustratorLogo from "../assets/utilities/Illustrator.png";
+import ndmuLogo from "../assets/utilities/NDMU.avif";
 const logos = [
   animateLogo,
   cLogo,
@@ -143,6 +144,9 @@ const timeline = {
       graduated: "2025",
       description:
         "Completed a rigorous curriculum in algorithms, data structures, and software engineering.",
+      logo: [ndmuLogo],
+      certificate: "",
+      modal: "",
     },
   ],
   experience: [
@@ -163,7 +167,7 @@ const timeline = {
       end: "2020",
       description:
         "Created UI icons, marketing banners, and 2D sprites for web projects and Roblox games.",
-      logo: "",
+      logo: [animateLogo],
       certificate: "",
       modal: "",
     },
@@ -193,11 +197,15 @@ const timeline = {
       end: "August 2024",
       description:
         "Contributed to full-stack features, wrote unit tests, and collaborated with senior engineers on code reviews.",
-      logo: "",
+      logo: [jsLogo, pythonLogo, dartLogo],
       certificate: "",
       modal: "",
     },
   ],
+};
+
+const projects = {
+  projects: {},
 };
 export {
   person,
@@ -209,4 +217,5 @@ export {
   about,
   logos,
   timeline,
+  projects,
 };

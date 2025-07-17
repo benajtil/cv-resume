@@ -31,7 +31,7 @@ body {
 }
 .photo-transition {
   border-radius: 0.375rem;          
-  transition: border-radius 2s ease-in-out;
+  transition: border-radius 1s ease-in-out;
 }
 
 /* base for every card */
