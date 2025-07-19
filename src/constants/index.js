@@ -250,19 +250,6 @@ const projects = [
 
     live: false,
   },
-  {
-    title: "Lakbay Marista",
-    description:
-      "Lakbay Marista is your one‑stop digital travel guide to the most captivating sights around the Mindanao region. From the serene shores of Lake Holon and the thundering cascades of Seven Falls, to hidden cultural monuments and family‑friendly resorts, Lakbay Marista curates each destination with beautiful photography, authentic local insights, and real traveler ratings. Use our intuitive filters—Popular, Featured, New, or All—to quickly discover the perfect spot for your next adventure, then dive into detailed location info and reviews so you can plan your trip with confidence. Whether you’re a weekend wanderer or an off‑the‑beaten‑path explorer, Lakbay Marista brings the best of South Cotabato province right to your fingertips.",
-    url: {
-      github: "https://github.com/benajtil/lakbaymarista-tourist",
-      live: "lakbaymarista.online",
-    },
-    image: lakbayImg,
-    languages: ["PHP", "HTML", "CSS", "JAVASCRIPT"],
-
-    live: true,
-  },
 ];
 export {
   person,

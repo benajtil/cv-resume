@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import background from "../assets/background.jpg";
+import Lottie from "lottie-react";
+import textBubble from "../assets/pixel-speech-bubble.gif";
+import backgroundGif from "../assets/background.gif";
+import catAnimation from "../assets/8-bit.json";
 import { person, tagline, typedTitle, info } from "../constants";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -9,6 +12,7 @@ const Hero = () => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
 
   useEffect(() => {
     const current = typedTitle.title[index];
@@ -44,8 +48,32 @@ const Hero = () => {
     >
       {}
       <div className="absolute inset-0">
+        <div
+          className="absolute bottom-10 right-10 flex-col w-70 h-100 z-30 [transform:rotateY(180deg)] cursor-pointer"
+          onClick={() => setShowBubble((prev) => !prev)}
+        >
+          <Lottie
+            animationData={catAnimation}
+            loop={true}
+            autoplay={true}
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
+        <div
+          className={`
+    absolute bottom-20 right-40 
+    w-80 h-80          
+    z-20
+    pointer-events-none
+    transition-opacity duration-300
+    ${showBubble ? "opacity-100" : "opacity-0"}
+  `}
+        >
+          <img src={textBubble} alt="text-bubble" />
+        </div>
+
         <img
-          src={background}
+          src={backgroundGif}
           alt="background"
           className="w-full h-screen object-cover z-0"
         />
@@ -61,7 +89,7 @@ const Hero = () => {
           <h1 className="text-2xl font-bold">{person.name.fullname}</h1>
 
           <h1
-            className={`text-7xl font-bold font-sans min-h-[2rem] ${currentColor}`}
+            className={`text-7xl font-bold font-Pixeboy min-h-[2rem] ${currentColor}`}
           >
             {text}
             <span className="animate-pulse">|</span>

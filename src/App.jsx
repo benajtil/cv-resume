@@ -38,11 +38,6 @@ const App = () => {
         </section>
 
         {}
-        <section id="skills" className="scroll-mt-24">
-          <Skills />
-        </section>
-
-        {}
         <section id="contact" className="scroll-mt-24">
           <Contact />
         </section>
