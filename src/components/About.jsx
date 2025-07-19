@@ -200,45 +200,16 @@ export default function About() {
                 className="mx-auto transition-transform duration-100 ease-in-out hover:scale-105 cursor-pointer hover:bg-green-200 hover:rounded-3xl"
                 onClick={handleClickOpen}
               >
-                <div className="border-2 border-green-500 rounded-4xl flex items-center justify-center h-10 w-40">
+                <a
+                  href=" /cv-resume/src/assets/Ben-Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-2 border-green-500 rounded-4xl flex items-center justify-center h-10 w-40"
+                >
                   <span className="font-semibold">RESUME</span>
                   <FaDownload className="text-green-500 w-5 h-5 ml-2" />
-                </div>
+                </a>
               </div>
-              <Dialog
-                open={open}
-                keepMounted
-                onClose={handleClose}
-                maxWidth="lg"
-                fullWidth
-              >
-                <DialogTitle>My Resume</DialogTitle>
-                <DialogContent dividers>
-                  {}
-                  <iframe
-                    src={`${resumePdf}#toolbar=0&navpanes=0&scrollbar=0`}
-                    title="Resume PDF"
-                    style={{
-                      width: "100%",
-                      height: "80vh",
-                      border: "none",
-                    }}
-                  />
-                </DialogContent>
-                <DialogActions>
-                  {}
-                  <Button
-                    component="a"
-                    href={resumePdf}
-                    download
-                    color="primary"
-                    startIcon={<FaDownload />}
-                  >
-                    Download
-                  </Button>
-                  <Button onClick={() => setOpen(false)}>Close</Button>
-                </DialogActions>
-              </Dialog>
             </div>
           </>
         </div>

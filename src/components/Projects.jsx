@@ -13,7 +13,6 @@ const Projects = () => {
             key={idx}
             className="group relative overflow-hidden rounded-2xl shadow-lg"
           >
-            {/* responsive image */}
             <img
               src={project.image}
               alt={`${project.title} preview`}
@@ -24,7 +23,6 @@ const Projects = () => {
               }}
             />
 
-            {/* overlay */}
             <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6">
               <div>
                 <h3 className="text-xl font-semibold text-white mb-2">
@@ -36,28 +34,43 @@ const Projects = () => {
               </div>
 
               <div>
-                {/* links */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {Object.entries(project.url).map(([key, value]) => {
-                    const isLive = key === "live" && project.live;
-                    const href = value.startsWith("http")
+                    const isLiveLink = key === "live";
+                    const isActive = project.live;
+                    const href = isLiveLink
+                      ? isActive
+                        ? value.startsWith("http")
+                          ? value
+                          : `https://${value}`
+                        : undefined
+                      : value.startsWith("http")
                       ? value
                       : `https://${value}`;
+
+                    let classes = "px-3 py-1 rounded text-xs uppercase ";
+
+                    if (isLiveLink) {
+                      classes += isActive
+                        ? "bg-red-500 text-white hover:bg-red-600 "
+                        : "bg-gray-300 text-gray-600 cursor-not-allowed pointer-events-none ";
+                    } else if (key === "github") {
+                      classes += "bg-gray-800 text-white hover:bg-gray-900 ";
+                    } else {
+                      classes += "bg-gray-300 text-gray-800 hover:bg-gray-400 ";
+                    }
 
                     return (
                       <a
                         key={key}
-                        href={isLive ? href : href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`
-                          px-3 py-1 rounded text-xs uppercase
-                          ${
-                            isLive
-                              ? "bg-red-500 text-white hover:bg-red-600"
-                              : "bg-gray-300 text-gray-800 cursor-not-allowed pointer-events-none line-through"
-                          }
-                        `}
+                        href={href}
+                        target={isLiveLink && !isActive ? undefined : "_blank"}
+                        rel={
+                          isLiveLink && !isActive
+                            ? undefined
+                            : "noopener noreferrer"
+                        }
+                        className={classes}
                       >
                         {key}
                       </a>
@@ -65,7 +78,6 @@ const Projects = () => {
                   })}
                 </div>
 
-                {/* languages */}
                 <div className="flex flex-wrap gap-2">
                   {project.languages.map((lang, i) => (
                     <span
