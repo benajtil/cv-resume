@@ -192,7 +192,7 @@ export default function About() {
                 onClick={handleClickOpen}
               >
                 <a
-                  href="/cv-resume/src/assets/Ben-Resume.pdf"
+                  href="/cv-resume/Ben-Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border-2 border-green-500 rounded-4xl flex items-center justify-center h-10 w-40"
