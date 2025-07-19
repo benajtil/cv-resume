@@ -43,5 +43,16 @@
     "react-router-dom": "^7.6.3",
     "tailwindcss": "^4.1.11",
     "vite": "^7.0.4"
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benajtil/cv-resume.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benajtil/cv-resume/issues"
   }
 }
