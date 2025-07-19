@@ -26,7 +26,7 @@ body {
 
 @font-face {
   font-family: "PixelOperator";
-  src: url("src/assets/fonts/PixelOperator.ttf") format("truetype");
+  src: url("/fonts/PixelOperator.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -34,7 +34,7 @@ body {
 
 @font-face {
   font-family: "Pixeboy";
-  src: url("src/assets/fonts/Pixeboy.ttf") format("truetype");
+  src: url("/fonts/Pixeboy.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
