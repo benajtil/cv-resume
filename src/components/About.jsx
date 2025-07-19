@@ -9,15 +9,6 @@ import {
 } from "react-icons/fa";
 import { about, person } from "../constants";
 import { logos } from "../constants";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
-  Slide,
-} from "@mui/material";
-import resumePdf from "../assets/CV.pdf";
 
 import profilePic from "../assets/bg1.jpg";
 import profileBorder from "../assets/border.gif";
@@ -201,7 +192,7 @@ export default function About() {
                 onClick={handleClickOpen}
               >
                 <a
-                  href=" /src/assets/Ben-Resume.pdf"
+                  href="/cv-resume/src/assets/Ben-Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border-2 border-green-500 rounded-4xl flex items-center justify-center h-10 w-40"
