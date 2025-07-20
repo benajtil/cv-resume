@@ -10,18 +10,18 @@ A sleek, pixel‑art–inspired personal portfolio built with React and Vite, sh
 
 ## 📖 About
 
-I’m **Ben Florence A.J. Til**, a fresh Computer Science graduate from NDMU, passionate about web development and pixel‑perfect UIs. This repo hosts my personal portfolio site, where you can:
+I’m **Ben Florence A.J. Til**, a fresh Computer Science graduate from NDMU, passionate about web development. This repo hosts my personal portfolio site, where you can:
 
 - Learn about my background, skills, and experience
 - Browse through my featured projects
-- Download my résumé with one click
+- Download my resume with one click
 
 ## ✨ Features
 
 - **Hero section** with dynamic typing effect
 - **About**, **Timeline**, **Projects**, **Skills**, **Contact** sections
 - **Responsive** layout (mobile‑first)
-- **Download Résumé** button opens PDF in a new tab
+- **Download Resume** button opens PDF in a new tab
 - **EmailJS**–powered contact form with auto‑reply
 - **Dark/light** mode toggle (optional to implement)
 
@@ -113,9 +113,9 @@ cv-resume/
 
 **Ben Florence A.J. Til**
 
-- 📧 [benajtil@example.com](mailto\:benajtil@example.com)
+- 📧 [benzajtil@gmail.com](mailto\:benzajtil@gmail.com)
 - 🌐 [https://benajtil.github.io/cv-resume](https://benajtil.github.io/cv-resume)
-- 🐦 [@your\_twitter](https://twitter.com/your_twitter)
+- 👔 [LinkedIn](https://www.linkedin.com/in/ben-florence-aj-til-7217a729a/)
 
 ## 📄 License
 
