@@ -10,39 +10,42 @@ import {
   Contact,
   Bottom,
 } from "./components";
+import LoadingScreen from "./components/loadingScreen";
 
 const App = () => {
   return (
     <BrowserRouter>
-      {}
-      <div className="scroll-smooth">
+      <LoadingScreen>
         {}
-        <section id="home">
-          <Hero />
-        </section>
-        <Header />
+        <div className="scroll-smooth">
+          {}
+          <section id="home">
+            <Hero />
+          </section>
+          <Header />
 
-        {}
-        <section id="about" className="scroll-mt-24">
-          <About />
-        </section>
+          {}
+          <section id="about" className="scroll-mt-24">
+            <About />
+          </section>
 
-        {}
-        <section id="timeline" className="scroll-mt-24">
-          <Timeline />
-        </section>
+          {}
+          <section id="timeline" className="scroll-mt-24">
+            <Timeline />
+          </section>
 
-        {}
-        <section id="projects" className="scroll-mt-24">
-          <Projects />
-        </section>
+          {}
+          <section id="projects" className="scroll-mt-24">
+            <Projects />
+          </section>
 
-        {}
-        <section id="contact" className="scroll-mt-24">
-          <Contact />
-        </section>
-      </div>
-      <Bottom />
+          {}
+          <section id="contact" className="scroll-mt-24">
+            <Contact />
+          </section>
+        </div>
+        <Bottom />
+      </LoadingScreen>
     </BrowserRouter>
   );
 };
