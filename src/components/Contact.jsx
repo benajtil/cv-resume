@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
-emailjs.init("aAE8KVxHN3pftW0wL");
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_CONTACT = import.meta.env.VITE_EMAILJS_TEMPLATE_CONTACT;
+const TEMPLATE_REPLY = import.meta.env.VITE_EMAILJS_TEMPLATE_REPLY;
+const COOLDOWN_SECONDS = 100;
+
+emailjs.init(PUBLIC_KEY);
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
+  const [cooldown, setCooldown] = useState(() => {
+    const last = localStorage.getItem("lastSend");
+    if (!last) return 0;
+    const elapsed = Math.floor((Date.now() - parseInt(last, 10)) / 1000);
+    return elapsed < COOLDOWN_SECONDS ? COOLDOWN_SECONDS - elapsed : 0;
+  });
+
+  useEffect(() => {
+    if (cooldown <= 0) return;
+    const timer = setInterval(() => setCooldown((c) => c - 1), 1000);
+    return () => clearInterval(timer);
+  }, [cooldown]);
 
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -22,10 +40,11 @@ export default function Contact() {
       email: form.email,
       message: form.message,
     };
+
     emailjs
-      .send("service_qp82eet", "template_npxedcr", commonParams)
+      .send(SERVICE_ID, TEMPLATE_CONTACT, commonParams)
       .then(() =>
-        emailjs.send("service_qp82eet", "template_ozkhleb", {
+        emailjs.send(SERVICE_ID, TEMPLATE_REPLY, {
           name: form.name,
           email: form.email,
           title: commonParams.title,
@@ -33,13 +52,16 @@ export default function Contact() {
       )
       .then(() => {
         setSubmitted(true);
+        setCooldown(COOLDOWN_SECONDS);
+        localStorage.setItem("lastSend", Date.now().toString());
         setForm({ name: "", email: "", message: "" });
       })
-      .catch((err) => {
-        console.error("EmailJS error:", err);
-        setError(`Error ${err.status || ""}: ${err.text || err}`);
-      });
+      .catch((err) =>
+        setError(`Error ${err.status || ""}: ${err.text || err}`)
+      );
   };
+
+  const isDisabled = submitted || cooldown > 0;
 
   return (
     <section
@@ -131,9 +153,14 @@ export default function Contact() {
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                   type="submit"
-                  className="inline-flex items-center px-6 py-3 bg-amber-300 text-gray-900 font-semibold rounded hover:bg-amber-400 transition"
+                  disabled={isDisabled}
+                  className={`inline-flex items-center px-6 py-3 font-semibold rounded transition ${
+                    isDisabled
+                      ? "bg-gray-400 text-gray-700 cursor-not-allowed"
+                      : "bg-amber-300 text-gray-900 hover:bg-amber-400"
+                  }`}
                 >
-                  Send Message
+                  {isDisabled ? `Wait ${cooldown}s` : "Send Message"}
                 </button>
               </>
             )}
