@@ -6,5 +6,6 @@ import Projects from "./Projects";
 import About from "./About";
 import Contact from "./Contact";
 import Bottom from "./Bottom";
+import Certificate from "./Certificate";
 
-export { Header, Hero, Timeline, Skills, Projects, Contact, About, Bottom };
+export { Header, Hero, Timeline, Skills, Projects, Contact, About, Bottom, Certificate };

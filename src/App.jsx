@@ -6,11 +6,11 @@ import {
   About,
   Timeline,
   Projects,
-  Skills,
   Contact,
   Bottom,
 } from "./components";
 import LoadingScreen from "./components/loadingScreen";
+import ScrollEffect from "./hooks/ScrollEffect";
 
 const App = () => {
   return (
@@ -19,30 +19,38 @@ const App = () => {
         {}
         <div className="scroll-smooth">
           {}
+
           <section id="home">
             <Hero />
           </section>
           <Header />
 
           {}
-          <section id="about" className="scroll-mt-24">
-            <About />
-          </section>
+          <ScrollEffect direction="right">
+            <section id="about" className="scroll-mt-24">
+              <About />
+            </section>
+          </ScrollEffect>
 
           {}
-          <section id="timeline" className="scroll-mt-24">
-            <Timeline />
-          </section>
+          <ScrollEffect direction="left">
+            <section id="timeline" className="scroll-mt-24">
+              <Timeline />
+            </section>
+          </ScrollEffect>
+          {}
+          <ScrollEffect>
+            <section id="projects" className="scroll-mt-24">
+              <Projects />
+            </section>
+          </ScrollEffect>
 
           {}
-          <section id="projects" className="scroll-mt-24">
-            <Projects />
-          </section>
-
-          {}
-          <section id="contact" className="scroll-mt-24">
-            <Contact />
-          </section>
+          <ScrollEffect>
+            <section id="contact" className="scroll-mt-24">
+              <Contact />
+            </section>
+          </ScrollEffect>
         </div>
         <Bottom />
       </LoadingScreen>
