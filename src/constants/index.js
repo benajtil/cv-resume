@@ -80,10 +80,10 @@ const navLink = [
     id: "projects",
     name: "Projects",
   },
-  {
-    id: "skills",
-    name: "Skills",
-  },
+  // {
+  //   id: "skills",
+  //   name: "Skills",
+  // },
 
   {
     id: "contact",
