@@ -1,14 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/cv-resume/assets/bg1-BqVyS1gY.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/cv-resume/assets/logo-_qdyCcQq.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CV-RESUME</title>
-    <script type="module" crossorigin src="/cv-resume/assets/index-DhuUeaPv.js"></script>
-    <link rel="stylesheet" crossorigin href="/cv-resume/assets/index-Bz81y0YN.css">
+    <title>BEN | PORTFOLIO</title>
+    <script type="module" crossorigin src="/cv-resume/assets/index-B_HYwKLt.js"></script>
+    <link rel="stylesheet" crossorigin href="/cv-resume/assets/index-BKwuaSz8.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="loader">
+      <div class="water-logo"></div>
+    </div>
+    <div id="root"></div>
+    <script async src="https://www.pixilart.com/js/embed.js?v=1.0.4"></script>
+
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        loader.classList.add("fade-out");
+        setTimeout(() => loader.remove(), 1000);
+      });
+    </script>
   </body>
 </html>
