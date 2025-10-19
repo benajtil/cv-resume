@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-@import 'tailwindcss';
+@import "tailwindcss";
 :root {
   --background: #ffffff;
   --foreground: #2c2c2c;
@@ -8,20 +8,31 @@
   --soft-blue: #e0f7fa;
   --soft-pink: #ffe6e6;
   --border-color: #ddd;
-
 }
 
-
-
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+  --accent: #1a1a1a;
+  --soft-blue: #112233;
+  --soft-pink: #331122;
+  --border-color: #444;
+  color-scheme: dark;
+}
+html,
+body,
+* {
+  cursor: none !important;
+}
 html {
   overflow-x: hidden;
   scroll-behavior: smooth;
-    color-scheme: dark;
-      font-family: "PixelOperator", sans-serif;
+  font-family: "PixelOperator", sans-serif;
 }
 body {
   background-color: var(--background);
   color: var(--foreground);
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 @font-face {
@@ -31,6 +42,57 @@ body {
   font-style: normal;
   font-display: swap;
 }
+@keyframes crt-flicker {
+  0%,
+  100% {
+    opacity: 0.04;
+  }
+  50% {
+    opacity: 0.1;
+  }
+}
+.crt-effect {
+  animation: crt-flicker 0.3s infinite;
+}
+/* Perspective helper */
+.perspective {
+  perspective: 1000px;
+}
+
+/* Fix for 3D backface rendering */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ✨ Shine sweep effect */
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: skewX(-20deg);
+  animation: shine 2s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  60% {
+    left: 120%;
+  }
+  100% {
+    left: 120%;
+  }
+}
 
 @font-face {
   font-family: "Pixeboy";
@@ -38,6 +100,19 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-infinite-scroll {
+  display: flex;
+  animation: infinite-scroll 30s linear infinite;
 }
 
 .black-gradient {
@@ -54,8 +129,21 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .photo-transition {
-  border-radius: 0.375rem;          
+  border-radius: 0.375rem;
   transition: border-radius 1s ease-in-out;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
 }
 
 /* base for every card */
@@ -69,12 +157,12 @@ body {
   content: "";
   position: absolute;
   top: 50%;
-  right: -0.5rem;          /* half of the before‐width */
+  right: -0.5rem; /* half of the before‐width */
   width: 1rem;
   height: 1rem;
   background: white;
   transform: translateY(-50%) rotate(45deg);
-  box-shadow: -1px -1px 1px rgba(0,0,0,0.1);
+  box-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
 }
 
 /* right‐side cards: arrow on the left */
@@ -87,11 +175,11 @@ body {
   height: 1rem;
   background: white;
   transform: translateY(-50%) rotate(45deg);
-  box-shadow: 1px -1px 1px rgba(0,0,0,0.1);
+  box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .photo-transition:hover {
-  border-radius: 50%;             
+  border-radius: 50%;
 }
 .photo-border {
   opacity: 0;
@@ -99,8 +187,13 @@ body {
 }
 
 @keyframes pulse-border {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 .violet-gradient {
   background: #804dee;
@@ -136,7 +229,6 @@ body {
 
 /* Marquee container: double-wide flex, scrolls its first half out of view */
 
-
 .green-text-gradient {
   background: #11998e; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -152,7 +244,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 
 .blue-text-gradient {
   /* background: -webkit-linear-gradient(#eee, #333); */

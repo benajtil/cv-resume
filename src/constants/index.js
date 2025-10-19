@@ -114,30 +114,33 @@ const about = {
 };
 import animateLogo from "../assets/utilities/animate.png";
 import cLogo from "../assets/utilities/c.png";
-import cppLogo from "../assets/utilities/c++.png";
+import cppLogo from "../assets/utilities/cpp.png";
 import dartLogo from "../assets/utilities/dart.png";
 import javaLogo from "../assets/utilities/java.png";
 import jsLogo from "../assets/utilities/js.png";
 import photoshopLogo from "../assets/utilities/photoshop.png";
-import premierLogo from "../assets/utilities/premier.png";
+import premiereLogo from "../assets/utilities/premiere.png";
 import pythonLogo from "../assets/utilities/python.png";
-import illustratorLogo from "../assets/utilities/Illustrator.png";
+import illustratorLogo from "../assets/utilities/illustrator.png";
 import ndmuLogo from "../assets/utilities/NDMU.avif";
 import lakbayImg from "../assets/projects/lakbaymarista.png";
 import customerImg from "../assets/projects/customersegmentation.png";
 import no404 from "../assets/projects/404.png";
+import clusteringImg from "../assets/album/clustering.png";
+import BenOS from "../assets/album/benOs.png";
+import ArtiumJ from "../assets/album/Graphic/ArtiumJ.png";
 
-const logos = [
-  animateLogo,
-  cLogo,
-  cppLogo,
-  dartLogo,
-  javaLogo,
-  jsLogo,
-  photoshopLogo,
-  premierLogo,
-  pythonLogo,
-  illustratorLogo,
+export const logos = [
+  { src: animateLogo, name: "Animate" },
+  { src: cLogo, name: "C" },
+  { src: cppLogo, name: "C++" },
+  { src: dartLogo, name: "Dart" },
+  { src: javaLogo, name: "Java" },
+  { src: jsLogo, name: "JavaScript" },
+  { src: photoshopLogo, name: "Photoshop" },
+  { src: premiereLogo, name: "Premiere" },
+  { src: pythonLogo, name: "Python" },
+  { src: illustratorLogo, name: "Illustrator" },
 ];
 
 const timeline = {
@@ -213,20 +216,20 @@ const projects = [
   {
     title: "Lakbay Marista",
     description:
-      "Lakbay Marista is your one‑stop digital travel guide to the most captivating sights around the Mindanao region. From the serene shores of Lake Holon and the thundering cascades of Seven Falls, to hidden cultural monuments and family‑friendly resorts, Lakbay Marista curates each destination with beautiful photography, authentic local insights, and real traveler ratings. Use our intuitive filters—Popular, Featured, New, or All—to quickly discover the perfect spot for your next adventure, then dive into detailed location info and reviews so you can plan your trip with confidence. Whether you’re a weekend wanderer or an off‑the‑beaten‑path explorer, Lakbay Marista brings the best of South Cotabato province right to your fingertips.",
+      "Lakbay Marista is your one-stop digital travel guide to the most captivating sights around the Mindanao region...",
     url: {
       github: "https://github.com/benajtil/lakbaymarista-tourist",
       live: "lakbaymarista.online",
     },
     image: lakbayImg,
     languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "MySQL"],
-
+    category: "Software", // 🟣 Added category
     live: true,
   },
   {
     title: "Customer Segmentation",
     description:
-      "Developed as part of our Thesis at Notre Dame of Marbel University, this PHP‑powered web application delivers a comprehensive, responsive admin dashboard that lets you drill into every table and record—customers, orders, products, users—and filter, sort, search, or export on demand; it also displays real‑time site metrics such as total customers, sales, and active sessions, while providing full user administration to create, edit, or revoke access for any number of admin or staff accounts. Beyond the LAMP‑stack front end, the repository includes a Python module built on pandas and scikit‑learn that preprocesses raw transaction data and applies the DBSCAN algorithm—using both RFM and LRFMP feature sets—to uncover natural customer clusters, which can then be visualized or fed back into the PHP dashboard for targeted marketing campaigns. Although the system has been discontinued following our successful thesis defense, it remains a complete full‑stack illustration of how to integrate a classic PHP/MySQL dashboard with a modern data‑science backend for real‑world customer‑segmentation workflows.",
+      "Developed as part of our Thesis at Notre Dame of Marbel University, this PHP-powered web application delivers a comprehensive admin dashboard...",
     url: {
       github:
         "https://github.com/benajtil/Customer-Segmentation-in-Online-Retail-using-DBSCANS.git",
@@ -234,23 +237,50 @@ const projects = [
     },
     image: customerImg,
     languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "PYTHON", "MySQL"],
-
+    category: "Data", // 🟣 Added category
     live: false,
   },
   {
     title: "Tabulation System",
     description:
-      "The Tnalak Festival Tabulation System is a PHP‑based web application designed to manage and score entries in both the Float Competition and Civic Competition. It supports local data storage via SQLite for offline use and central synchronization with MySQL for permanent record‑keeping. Administrators can log in to manage contestants, judges, and scoring criteria, then generate printed score sheets and final ranking reports.",
+      "The Tnalak Festival Tabulation System is a PHP-based web app designed to manage and score entries in both the Float and Civic Competitions...",
     url: {
       github: "https://github.com/benajtil/tnalak-admin.git",
       live: "lakbaymarista.online",
     },
     image: no404,
     languages: ["PHP", "HTML", "CSS", "JAVASCRIPT", "SQLite", "MySQL"],
-
+    category: "Software", // 🟣 Added category
     live: false,
   },
+  {
+    title: "BenOS Retro System",
+    description: "3D interactive portfolio built with React + Three.js.",
+    image: BenOS,
+    languages: ["React", "Three.js", "Tailwind"],
+    url: { live: "ben-os-qtex.vercel.app/" },
+    category: "Software",
+    live: true,
+  },
+  {
+    title: "Clustering Visualization",
+    description:
+      "visualized RFM-based clusters powered by scikit-learn and Matplotlib.",
+    image: clusteringImg,
+    languages: ["Python", "scikit-learn", "Matplotlib"],
+    url: "https://colab.research.google.com/drive/1J7YqSGFbONl9Vn1e2Tryk_i51Ov-YjgY?usp=sharing",
+    category: "Data",
+  },
+  {
+    title: "Logo Design",
+    description: "Minimalist and geometric branding projects.",
+    image: ArtiumJ,
+    languages: ["Illustrator", "Photoshop"],
+    url: "#",
+    category: "Graphic",
+  },
 ];
+
 export {
   person,
   scope,
@@ -259,7 +289,6 @@ export {
   info,
   navLink,
   about,
-  logos,
   timeline,
   projects,
 };

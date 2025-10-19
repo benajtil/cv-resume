@@ -1,5 +1,5 @@
 import React from "react";
-import useInView from "../hooks/useInView";
+import useInView from "./useInView";
 
 const ScrollEffect = ({ children, direction = "up" }) => {
   const [ref, isInView] = useInView();

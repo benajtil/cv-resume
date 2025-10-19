@@ -1,99 +1,144 @@
+import { useState } from "react";
 import { projects } from "../constants";
 
-const Projects = () => {
+const Projects = ({ isDarkMode }) => {
+  const categories = ["All", "Software", "Data", "Graphic", "Others"];
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredProjects =
+    selectedCategory === "All"
+      ? projects
+      : projects.filter(
+          (proj) =>
+            proj.category &&
+            proj.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
   return (
-    <div className="scroll-mt-24 mt-20 pt-16 pb-16 bg-slate-950 rounded-4xl max-w-7xl mx-auto px-4">
-      <h1 className="text-3xl font-bold mb-8 text-white text-center">
-        PROJECTS
-      </h1>
+    <section
+      id="projects"
+      className="bg-[var(--background)] py-20 px-6 md:px-12"
+    >
+      {/* Header Section */}
+      <header className="text-center mb-16">
+        <h1
+          className={`text-4xl md:text-5xl font-bold ${
+            isDarkMode ? "text-gray-50" : "text-gray-700"
+          } mb-4`}
+        >
+          Selected <span className="text-purple-600">Projects</span>
+        </h1>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          A curated selection of my works showcasing creativity, design, and
+          technical expertise across multiple disciplines.
+        </p>
 
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-        {projects.map((project, idx) => (
-          <div
-            key={idx}
-            className="group relative overflow-hidden rounded-2xl shadow-lg"
-          >
-            <img
-              src={project.image}
-              alt={`${project.title} preview`}
-              className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover transition-transform duration-500 group-hover:scale-110"
-              onError={(e) => {
-                e.target.src =
-                  "https://via.placeholder.com/600x300?text=No+Image";
-              }}
-            />
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mt-10">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                selectedCategory === cat
+                  ? "bg-purple-600 text-white shadow-lg scale-105"
+                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </header>
 
-            <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-6">
-              <div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-gray-200 line-clamp-4">
-                  {project.description}
-                </p>
+      {/* Project Grid */}
+      <main className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 transition-all duration-500">
+        {filteredProjects.length > 0 ? (
+          filteredProjects.map((proj, i) => (
+            <div
+              key={i}
+              className={`bg-gray-50 rounded-3xl overflow-hidden shadow-md transition-transform duration-500 hover:-translate-y-2 hover:shadow-xl ${
+                i % 2 === 1 ? "md:translate-y-24" : ""
+              }`}
+            >
+              {/* Image Section */}
+              <div className="px-6 pt-6">
+                <div className="relative bg-gray-100 rounded-3xl overflow-hidden group">
+                  <a
+                    href={proj.url?.live ? `https://${proj.url.live}` : "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                  >
+                    <img
+                      src={proj.image}
+                      alt={proj.title}
+                      className="w-full h-auto object-cover rounded-3xl transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) =>
+                        (e.target.src =
+                          "https://via.placeholder.com/800x1200?text=Preview+Unavailable")
+                      }
+                    />
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {Object.entries(project.url).map(([key, value]) => {
-                    const isLiveLink = key === "live";
-                    const isActive = project.live;
-                    const href = isLiveLink
-                      ? isActive
-                        ? value.startsWith("http")
-                          ? value
-                          : `https://${value}`
-                        : undefined
-                      : value.startsWith("http")
-                      ? value
-                      : `https://${value}`;
+              {/* Info Section */}
+              <div className="p-8 space-y-6 text-center">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {proj.title}
+                </h2>
+                <p className="text-gray-600 leading-relaxed">
+                  {proj.description}
+                </p>
 
-                    let classes = "px-3 py-1 rounded text-xs uppercase ";
-
-                    if (isLiveLink) {
-                      classes += isActive
-                        ? "bg-red-500 text-white hover:bg-red-600 "
-                        : "bg-gray-300 text-gray-600 cursor-not-allowed pointer-events-none ";
-                    } else if (key === "github") {
-                      classes += "bg-gray-800 text-white hover:bg-gray-900 ";
-                    } else {
-                      classes += "bg-gray-300 text-gray-800 hover:bg-gray-400 ";
-                    }
-
-                    return (
-                      <a
-                        key={key}
-                        href={href}
-                        target={isLiveLink && !isActive ? undefined : "_blank"}
-                        rel={
-                          isLiveLink && !isActive
-                            ? undefined
-                            : "noopener noreferrer"
-                        }
-                        className={classes}
+                {/* Languages */}
+                {proj.languages?.length > 0 && (
+                  <div className="flex flex-wrap justify-center gap-3 py-2">
+                    {proj.languages.map((lang, i) => (
+                      <span
+                        key={i}
+                        className="text-sm bg-gray-200 text-gray-700 font-semibold px-3 py-1 rounded-full"
                       >
-                        {key}
-                      </a>
-                    );
-                  })}
-                </div>
+                        {lang}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
-                <div className="flex flex-wrap gap-2">
-                  {project.languages.map((lang, i) => (
-                    <span
-                      key={i}
-                      className="bg-amber-300 text-black text-xs font-medium px-2 py-1 rounded"
+                {/* Buttons */}
+                <div className="flex justify-center gap-4 pt-4">
+                  {proj.url?.live && proj.live && (
+                    <a
+                      href={`https://${proj.url.live}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2 rounded-3xl font-semibold text-white bg-purple-600 border-2 border-transparent transition-all hover:bg-white hover:text-purple-600 hover:border-purple-600"
                     >
-                      {lang}
-                    </span>
-                  ))}
+                      View Live
+                    </a>
+                  )}
+                  {proj.url?.github && (
+                    <a
+                      href={proj.url.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2 rounded-3xl font-semibold text-purple-600 border-2 border-purple-600 transition-all hover:bg-purple-600 hover:text-white"
+                    >
+                      GitHub
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-500 text-lg col-span-2">
+            No projects found in this category.
+          </p>
+        )}
+      </main>
+    </section>
   );
 };
 
