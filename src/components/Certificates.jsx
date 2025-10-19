@@ -2,33 +2,33 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const certificates = [
-  {
-    title: "Certified Enterprise Scripting Architect",
-    issuer: "Connectwise University",
-    date: "Jul 2024",
-    description:
-      "RMM, MDM, Powershell, Scripting, Windows Server, Enterprise Architecture, Query Optimization.",
-    logo: "https://cdn-icons-png.flaticon.com/512/3197/3197947.png",
-    link: "#",
-  },
-  {
-    title: "Google IT Automation With Python",
-    issuer: "Google",
-    date: "Mar 2023",
-    description:
-      "Automation, GCP, Cloud Servers & VMs, Version Control Tools, Configuration Management.",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-    link: "#",
-  },
-  {
-    title: "WHMIS (Worker Health and Safety)",
-    issuer: "Government Workforce Requirement",
-    date: "Sep 2020",
-    description:
-      "Hazard Awareness, Legal Compliance, Personal Protection, Accident Prevention.",
-    logo: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
-    link: "#",
-  },
+  // {
+  //   title: "Certified Enterprise Scripting Architect",
+  //   issuer: "Connectwise University",
+  //   date: "Jul 2024",
+  //   description:
+  //     "RMM, MDM, Powershell, Scripting, Windows Server, Enterprise Architecture, Query Optimization.",
+  //   logo: "https://cdn-icons-png.flaticon.com/512/3197/3197947.png",
+  //   link: "#",
+  // },
+  // {
+  //   title: "Google IT Automation With Python",
+  //   issuer: "Google",
+  //   date: "Mar 2023",
+  //   description:
+  //     "Automation, GCP, Cloud Servers & VMs, Version Control Tools, Configuration Management.",
+  //   logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+  //   link: "#",
+  // },
+  // {
+  //   title: "WHMIS (Worker Health and Safety)",
+  //   issuer: "Government Workforce Requirement",
+  //   date: "Sep 2020",
+  //   description:
+  //     "Hazard Awareness, Legal Compliance, Personal Protection, Accident Prevention.",
+  //   logo: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+  //   link: "#",
+  // },
 ];
 
 const Certificates = ({ isDarkMode }) => {

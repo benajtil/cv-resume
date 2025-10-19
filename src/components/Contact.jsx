@@ -34,7 +34,7 @@ export default function Contact({ isDarkMode }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setError("");
-    const params = {
+    const commonParams = {
       title: "Contact Form",
       time: new Date().toLocaleString(),
       name: form.name,
@@ -43,12 +43,12 @@ export default function Contact({ isDarkMode }) {
     };
 
     emailjs
-      .send(SERVICE_ID, TEMPLATE_CONTACT, params)
+      .send(SERVICE_ID, TEMPLATE_CONTACT, commonParams)
       .then(() =>
         emailjs.send(SERVICE_ID, TEMPLATE_REPLY, {
           name: form.name,
           email: form.email,
-          title: params.title,
+          title: commonParams.title,
         })
       )
       .then(() => {
@@ -57,7 +57,9 @@ export default function Contact({ isDarkMode }) {
         localStorage.setItem("lastSend", Date.now().toString());
         setForm({ name: "", email: "", message: "" });
       })
-      .catch((err) => setError(`Error: ${err.text || err.message}`));
+      .catch((err) =>
+        setError(`Error ${err.status || ""}: ${err.text || err}`)
+      );
   };
 
   const isDisabled = submitted || cooldown > 0;
@@ -65,120 +67,120 @@ export default function Contact({ isDarkMode }) {
   return (
     <section
       id="contact"
-      className={`relative min-h-screen py-24 px-6 sm:px-10 overflow-hidden ${
-        isDarkMode ? "text-gray-100" : "text-gray-900"
-      }`}
+      className={`relative scroll-mt-24 min-h-screen py-20 px-6 md:px-12 transition-colors duration-700 overflow-hidden `}
     >
-      {/* 🧊 CUBES AS INTERACTIVE BACKGROUND */}
-      <div className="absolute inset-0 z-0 pointer-events-auto">
+      {/* 🧊 Interactive Cube Background with Top Gradient Fade */}
+      <div className="absolute inset-0 -z-10 pointer-events-auto">
         <Cubes
-          gridSize={10}
-          radius={5}
-          cubeSize={90}
-          borderStyle="1px solid rgba(255,255,255,0.1)"
-          faceColor={isDarkMode ? "#0c0c15" : "#f0f0f0"}
+          gridSize={9}
+          maxAngle={55}
+          radius={4}
+          faceColor={isDarkMode ? "#0f0820" : "#e9e9ef"}
+          borderStyle="1px solid #5b21b6"
           rippleColor={isDarkMode ? "#a855f7" : "#7e22ce"}
-          rippleSpeed={1.5}
+          rippleSpeed={1.2}
           autoAnimate={true}
           rippleOnClick={true}
         />
+
+        {/* 🔳 Gradient fade overlay */}
+        <div
+          className={`absolute inset-0 pointer-events-none bg-gradient-to-t from-transparent via-purple-200/30 to-[var(--background)] `}
+        />
       </div>
 
-      {/* Transparent overlay to preserve glass blur but allow pointer events */}
-      <div className="absolute inset-0 z-10 pointer-events-none backdrop-blur-[2px]" />
-
-      {/* Foreground content */}
-      <div className="relative z-20 pointer-events-auto container mx-auto max-w-6xl">
+      {/* Foreground Content */}
+      <div className="relative z-20 container mx-auto max-w-7xl">
         <h2 className="text-4xl font-extrabold text-center mb-20">
-          Let’s <span className="text-purple-500">Connect</span>
+          Get In <span className="text-purple-500">Touch</span>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left: Info Cards */}
-          <div className="space-y-8 bg-black/30 dark:bg-white/5 p-8 rounded-2xl border border-purple-500/20 backdrop-blur-md">
+          {/* Contact Info */}
+          <div className="space-y-8 bg-black/20 dark:bg-black/40 p-8 rounded-2xl border border-purple-500 backdrop-blur-md">
             {[
               {
-                icon: <MapPin className="w-6 h-6 text-purple-400 mt-1" />,
+                icon: <MapPin className="w-6 h-6 text-purple-500 mt-1" />,
                 title: "Location",
                 text: "Tupi, South Cotabato, Philippines",
               },
               {
-                icon: <Phone className="w-6 h-6 text-purple-400 mt-1" />,
+                icon: <Phone className="w-6 h-6 text-purple-500 mt-1" />,
                 title: "Phone",
                 text: "+63 963 1512 988",
               },
               {
-                icon: <Mail className="w-6 h-6 text-purple-400 mt-1" />,
+                icon: <Mail className="w-6 h-6 text-purple-500 mt-1" />,
                 title: "Email",
                 text: "benzajtil@gmail.com",
               },
             ].map((info, i) => (
               <div
                 key={i}
-                className="flex items-start space-x-4 p-4 rounded-xl hover:bg-purple-500/10 transition-all duration-300"
+                className="flex items-start space-x-4 hover:bg-purple-500/10 p-4 rounded-xl transition-all duration-300"
               >
                 {info.icon}
                 <div>
                   <h3 className="font-semibold text-xl text-purple-400">
                     {info.title}
                   </h3>
-                  <p className="text-gray-400">{info.text}</p>
+                  <p className="text-[var(--foreground)]">{info.text}</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Right: Contact Form */}
+          {/* Contact Form */}
           <form
             onSubmit={handleSubmit}
-            className="relative w-full max-w-md mx-auto bg-white/10 dark:bg-purple-950/30 border border-purple-400/30 rounded-3xl p-8 backdrop-blur-xl shadow-[0_0_30px_rgba(168,85,247,0.25)] space-y-6 transition-transform duration-300 hover:scale-[1.01]"
+            className={`relative z-10 w-full max-w-md bg-white/10 dark:bg-purple-950/20 backdrop-blur-xl border border-purple-500/30 rounded-3xl p-8 shadow-2xl space-y-6 transition-all duration-500`}
           >
             {submitted ? (
               <div className="p-6 bg-purple-600/80 rounded-xl text-center text-white font-semibold">
-                💜 Message Sent! I’ll get back to you soon.
+                Thanks for reaching out! 💜 I’ll reply soon.
               </div>
             ) : (
               <>
                 <h3 className="text-2xl font-semibold text-center text-purple-400">
-                  Drop Me a Line
+                  Drop me a Message
                 </h3>
-                <p className="text-center text-sm text-gray-400 mb-4">
-                  Let’s talk about your ideas or projects!
-                </p>
 
-                {["name", "email", "message"].map((field) => (
-                  <div key={field}>
-                    <label
-                      htmlFor={field}
-                      className="block text-sm font-semibold text-purple-300 mb-2"
-                    >
-                      {field.charAt(0).toUpperCase() + field.slice(1)}
-                    </label>
-                    {field === "message" ? (
-                      <textarea
-                        id={field}
-                        name={field}
-                        rows={4}
-                        value={form.message}
-                        onChange={handleChange}
-                        required
-                        placeholder="Your message..."
-                        className="w-full rounded-xl bg-black/30 border border-purple-500/40 px-4 py-3 text-gray-100 placeholder-purple-300 focus:ring-2 focus:ring-purple-500 outline-none resize-none transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]"
-                      />
-                    ) : (
-                      <input
-                        type={field === "email" ? "email" : "text"}
-                        id={field}
-                        name={field}
-                        value={form[field]}
-                        onChange={handleChange}
-                        required
-                        placeholder={`Your ${field}`}
-                        className="w-full rounded-xl bg-black/30 border border-purple-500/40 px-4 py-3 text-gray-100 placeholder-purple-300 focus:ring-2 focus:ring-purple-500 outline-none transition-all duration-300 hover:shadow-[0_0_15px_rgba(168,85,247,0.4)]"
-                      />
-                    )}
-                  </div>
-                ))}
+                <div className="space-y-4">
+                  {["name", "email", "message"].map((field) => (
+                    <div key={field}>
+                      <label
+                        htmlFor={field}
+                        className="block text-sm font-semibold text-purple-300 mb-2"
+                      >
+                        {field.charAt(0).toUpperCase() + field.slice(1)}
+                      </label>
+
+                      {field === "message" ? (
+                        <textarea
+                          id={field}
+                          name={field}
+                          rows={4}
+                          value={form.message}
+                          onChange={handleChange}
+                          required
+                          placeholder="Write your message..."
+                          className="w-full rounded-xl bg-purple-100/10 dark:bg-purple-950/40 border border-purple-400/30 px-4 py-3 text-gray-100 placeholder-purple-300 focus:ring-2 focus:ring-purple-500 outline-none resize-none transition"
+                        />
+                      ) : (
+                        <input
+                          type={field === "email" ? "email" : "text"}
+                          id={field}
+                          name={field}
+                          value={form[field]}
+                          onChange={handleChange}
+                          required
+                          placeholder={`Your ${field}`}
+                          className="w-full rounded-xl bg-purple-100/10 dark:bg-purple-950/40 border border-purple-400/30 px-4 py-3 text-gray-100 placeholder-purple-300 focus:ring-2 focus:ring-purple-500 outline-none transition"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
 
                 {error && (
                   <p className="text-red-400 text-center text-sm font-medium">
@@ -189,10 +191,10 @@ export default function Contact({ isDarkMode }) {
                 <button
                   type="submit"
                   disabled={isDisabled}
-                  className={`w-full mt-4 py-3 font-semibold rounded-xl transition-all duration-300 ${
+                  className={`mt-4 w-full flex justify-center items-center gap-2 px-6 py-3 font-semibold rounded-xl transition-all duration-300 ${
                     isDisabled
                       ? "bg-purple-900/50 text-purple-300 cursor-not-allowed"
-                      : "bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 text-white shadow-lg hover:shadow-purple-500/60 hover:scale-[1.03]"
+                      : "bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-lg hover:shadow-purple-500/50 hover:scale-[1.03]"
                   }`}
                 >
                   {isDisabled ? `⏳ Wait ${cooldown}s` : "Send Message"}
