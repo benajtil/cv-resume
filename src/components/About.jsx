@@ -238,7 +238,7 @@ export default function About({ isDarkMode }) {
           {/* Resume Button */}
           <div className="flex justify-center">
             <a
-              href="/cv-resume/Ben-Resume.pdf"
+              href="/cv-resume/Junior Web Developer.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-purple-600 rounded-4xl flex items-center justify-center h-10 w-40 
