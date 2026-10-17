@@ -14,7 +14,7 @@ const KOMU_GITHUB = "https://github.com/benajtil/Komu_Web";
 
 const FeaturedWork = ({ isDarkMode = false }) => {
   const theme = {
-    heading: isDarkMode ? "text-gray-100" : "text-gray-900",
+    heading: isDarkMode ? "text-gray-100" : "text-gray-500",
     body: isDarkMode ? "text-gray-300" : "text-gray-600",
     muted: isDarkMode ? "text-gray-400" : "text-gray-500",
 

@@ -152,8 +152,8 @@ export default function Contact({ isDarkMode = false }) {
     {
       icon: <Mail size={22} />,
       title: "Email",
-      text: "benzajtil@gmail.com",
-      href: "mailto:benzajtil@gmail.com",
+      text: "benflorence.dev@gmail.com",
+      href: "mailto:benflorence.dev@gmail.com",
     },
   ];
 

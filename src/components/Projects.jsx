@@ -14,7 +14,7 @@ const Projects = ({ isDarkMode = false }) => {
             project.category?.toLowerCase() === selectedCategory.toLowerCase(),
         );
 
-  const headingColor = isDarkMode ? "text-gray-100" : "text-gray-900";
+  const headingColor = isDarkMode ? "text-gray-100" : "text-gray-500";
   const mutedColor = isDarkMode ? "text-gray-300" : "text-gray-600";
 
   const cardStyle = isDarkMode
