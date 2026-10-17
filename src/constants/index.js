@@ -89,6 +89,10 @@ const navLink = [
     id: "contact",
     name: "Contact",
   },
+  {
+    id: "album",
+    name: "Album",
+  },
 ];
 const about = {
   bio: {
@@ -128,7 +132,7 @@ import customerImg from "../assets/projects/customersegmentation.png";
 import no404 from "../assets/projects/404.png";
 import clusteringImg from "../assets/album/clustering.png";
 import BenOS from "../assets/album/benOs.png";
-import ArtiumJ from "../assets/album/Graphic/ArtiumJ.png";
+import ArtiumJ from "../assets/album/GraphicDesign/AtriumJ-Mockup.png";
 
 export const logos = [
   { src: animateLogo, name: "Animate" },
@@ -268,15 +272,17 @@ const projects = [
       "visualized RFM-based clusters powered by scikit-learn and Matplotlib.",
     image: clusteringImg,
     languages: ["Python", "scikit-learn", "Matplotlib"],
-    url: "https://colab.research.google.com/drive/1J7YqSGFbONl9Vn1e2Tryk_i51Ov-YjgY?usp=sharing",
+    url: {
+      live: "https://colab.research.google.com/drive/1J7YqSGFbONl9Vn1e2Tryk_i51Ov-YjgY?usp=sharing",
+    },
     category: "Data",
   },
   {
-    title: "Logo Design",
+    title: "Graphic Design",
     description: "Minimalist and geometric branding projects.",
     image: ArtiumJ,
     languages: ["Illustrator", "Photoshop"],
-    url: "#",
+    url: "./GraphicDesign.jsx",
     category: "Graphic",
   },
 ];

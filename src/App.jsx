@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
-import {
-  Hero,
-  Header,
-  About,
-  Timeline,
-  Projects,
-  Contact,
-  Album,
-  Certificates,
-  TargetCursor,
-} from "./components";
-import ScrollEffect from "./hooks/ScrollEffect";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import { GraphicDesign } from "./gallery"; // or import GraphicDesign from "./gallery/GraphicDesign"
+import { TargetCursor } from "./components"; // ✅ import cursor globally
 import "./components/extra/loading.css";
 
 const App = () => {
@@ -19,15 +10,13 @@ const App = () => {
   const [progress, setProgress] = useState(0);
   const [showLoader, setShowLoader] = useState(true);
 
-  // 🌙 Dark mode toggle
   useEffect(() => {
     document.documentElement.classList.toggle("dark", isDarkMode);
   }, [isDarkMode]);
 
-  // 🌀 Loading logic
   useEffect(() => {
     let percent = 0;
-    const duration = 3000; // 3 s matches CSS fillUp
+    const duration = 3000;
     const interval = 30;
     const step = 100 / (duration / interval);
 
@@ -36,12 +25,10 @@ const App = () => {
       if (percent >= 100) {
         percent = 100;
         clearInterval(timer);
-
-        // wait 1 s before hiding loader
         setTimeout(() => {
           const loaderEl = document.getElementById("loader");
           loaderEl?.classList.add("fade-out");
-          setTimeout(() => setShowLoader(false), 1000); // remove from DOM after fade
+          setShowLoader(false);
         }, 1000);
       }
       setProgress(Math.floor(percent));
@@ -50,7 +37,6 @@ const App = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // ⏳ Loader visible
   if (showLoader) {
     return (
       <div id="loader">
@@ -60,60 +46,41 @@ const App = () => {
     );
   }
 
-  // 🌍 Main app after loader finishes
   return (
     <BrowserRouter>
+      {/* ✅ Global cursor so it's active everywhere */}
       <TargetCursor
         targetSelector="button, a, input, textarea, label, p, span, .switchbutton, .profileimages, .timeline-item, .album-images"
         spinDuration={3}
         hideDefaultCursor
       />
-      <div
-        className="scroll-smooth transition-colors duration-500 
-      bg-[var(--background)] text-[var(--foreground)]"
-      >
-        <section id="home">
-          <Hero isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-        </section>
 
-        <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-
-        <ScrollEffect direction="right">
-          <section id="about" className="scroll-mt-24">
-            <About />
-          </section>
-        </ScrollEffect>
-
-        <ScrollEffect>
-          <section id="timeline" className="scroll-mt-24">
-            <Timeline />
-          </section>
-        </ScrollEffect>
-
-        <ScrollEffect>
-          <section id="projects" className="scroll-mt-24">
-            <Projects />
-          </section>
-        </ScrollEffect>
-
-        <ScrollEffect>
-          <section id="certificates" className="scroll-mt-24">
-            <Certificates />
-          </section>
-        </ScrollEffect>
-
-        <ScrollEffect>
-          <section id="album" className="scroll-mt-24">
-            <Album />
-          </section>
-        </ScrollEffect>
-
-        <ScrollEffect>
-          <section id="contact" className="scroll-mt-24">
-            <Contact />
-          </section>
-        </ScrollEffect>
+      {/* Floating quick link to Graphic Design gallery */}
+      <div style={{ position: "fixed", right: 20, bottom: 10, zIndex: 9999 }}>
+        <Link
+          to="/graphic-design"
+          className="text-2xl bg-purple-300 rounded-full p-2 hover:bg-purple-400 transition-colors"
+        >
+          Graphic Design
+        </Link>
       </div>
+
+      {/* 🔹 All routes */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+          }
+        />
+        <Route path="/graphic-design" element={<GraphicDesign />} />
+        <Route
+          path="*"
+          element={
+            <div style={{ color: "#fff", padding: 24 }}>404 Not Found</div>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 };

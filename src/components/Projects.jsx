@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { projects } from "../constants";
+import GraphicDesignSlideshow from "./GraphicDesign.jsx";
 
-const Projects = ({ isDarkMode }) => {
+const Projects = ({ isDarkMode = false }) => {
   const categories = ["All", "Software", "Data", "Graphic", "Others"];
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -9,135 +10,222 @@ const Projects = ({ isDarkMode }) => {
     selectedCategory === "All"
       ? projects
       : projects.filter(
-          (proj) =>
-            proj.category &&
-            proj.category.toLowerCase() === selectedCategory.toLowerCase()
+          (project) =>
+            project.category?.toLowerCase() === selectedCategory.toLowerCase(),
         );
+
+  const headingColor = isDarkMode ? "text-gray-100" : "text-gray-900";
+  const mutedColor = isDarkMode ? "text-gray-300" : "text-gray-600";
+
+  const cardStyle = isDarkMode
+    ? "border-white/10 bg-white/[0.04] hover:border-purple-400/40"
+    : "border-gray-200 bg-white hover:border-purple-300";
+
+  const tagStyle = isDarkMode
+    ? "border-white/10 bg-white/[0.06] text-gray-200"
+    : "border-gray-200 bg-gray-100 text-gray-700";
+
+  const liveUrl = (url) => {
+    if (!url) return null;
+    return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+  };
 
   return (
     <section
       id="projects"
-      className="bg-[var(--background)] py-20 px-6 md:px-12"
+      className="px-4 py-20 transition-colors duration-300 sm:px-6 md:px-12 lg:py-28"
     >
-      {/* Header Section */}
-      <header className="text-center mb-16">
-        <h1
-          className={`text-4xl md:text-5xl font-bold ${
-            isDarkMode ? "text-gray-50" : "text-gray-700"
-          } mb-4`}
-        >
-          Selected <span className="text-purple-600">Projects</span>
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          A curated selection of my works showcasing creativity, design, and
-          technical expertise across multiple disciplines.
-        </p>
-
-        {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mt-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                selectedCategory === cat
-                  ? "bg-purple-600 text-white shadow-lg scale-105"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </header>
-
-      {/* Project Grid */}
-      <main className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 transition-all duration-500">
-        {filteredProjects.length > 0 ? (
-          filteredProjects.map((proj, i) => (
-            <div
-              key={i}
-              className={`bg-gray-50 rounded-3xl overflow-hidden shadow-md transition-transform duration-500 hover:-translate-y-2 hover:shadow-xl ${
-                i % 2 === 1 ? "md:translate-y-24" : ""
-              }`}
-            >
-              {/* Image Section */}
-              <div className="px-6 pt-6">
-                <div className="relative bg-gray-100 rounded-3xl overflow-hidden group">
-                  <a
-                    href={proj.url?.live ? `https://${proj.url.live}` : "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full h-full"
-                  >
-                    <img
-                      src={proj.image}
-                      alt={proj.title}
-                      className="w-full h-auto object-cover rounded-3xl transition-transform duration-700 group-hover:scale-105"
-                      onError={(e) =>
-                        (e.target.src =
-                          "https://via.placeholder.com/800x1200?text=Preview+Unavailable")
-                      }
-                    />
-                  </a>
-                </div>
-              </div>
-
-              {/* Info Section */}
-              <div className="p-8 space-y-6 text-center">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {proj.title}
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  {proj.description}
-                </p>
-
-                {/* Languages */}
-                {proj.languages?.length > 0 && (
-                  <div className="flex flex-wrap justify-center gap-3 py-2">
-                    {proj.languages.map((lang, i) => (
-                      <span
-                        key={i}
-                        className="text-sm bg-gray-200 text-gray-700 font-semibold px-3 py-1 rounded-full"
-                      >
-                        {lang}
-                      </span>
-                    ))}
-                  </div>
-                )}
-
-                {/* Buttons */}
-                <div className="flex justify-center gap-4 pt-4">
-                  {proj.url?.live && proj.live && (
-                    <a
-                      href={`https://${proj.url.live}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2 rounded-3xl font-semibold text-white bg-purple-600 border-2 border-transparent transition-all hover:bg-white hover:text-purple-600 hover:border-purple-600"
-                    >
-                      View Live
-                    </a>
-                  )}
-                  {proj.url?.github && (
-                    <a
-                      href={proj.url.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-5 py-2 rounded-3xl font-semibold text-purple-600 border-2 border-purple-600 transition-all hover:bg-purple-600 hover:text-white"
-                    >
-                      GitHub
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-gray-500 text-lg col-span-2">
-            No projects found in this category.
+      <div className="mx-auto max-w-7xl">
+        {/* Section heading */}
+        <header className="mb-12 text-center sm:mb-16">
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-purple-400">
+            What I've Built
           </p>
+
+          <h1
+            className={`mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl ${headingColor}`}
+          >
+            Selected <span className="text-purple-400">Projects</span>
+          </h1>
+
+          <p
+            className={`mx-auto mt-5 max-w-2xl text-sm leading-7 sm:text-base ${mutedColor}`}
+          >
+            A selection of my software projects, data work, and creative
+            designs, showcasing how I combine technical skills with creativity.
+          </p>
+
+          {/* Category filters */}
+          <div
+            className="mt-8 flex flex-wrap justify-center gap-2 sm:gap-3"
+            aria-label="Filter projects by category"
+          >
+            {categories.map((category) => {
+              const isSelected = selectedCategory === category;
+
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 ${
+                    isSelected
+                      ? "border-purple-500 bg-purple-600 text-white shadow-md shadow-purple-500/20"
+                      : isDarkMode
+                        ? "border-white/10 bg-white/[0.04] text-gray-300 hover:border-purple-400/50 hover:text-white"
+                        : "border-gray-200 bg-white text-gray-700 hover:border-purple-300 hover:text-purple-700"
+                  }`}
+                >
+                  {category}
+                </button>
+              );
+            })}
+          </div>
+        </header>
+
+        {/* Graphic design showcase */}
+        <section className="mb-16">
+          <GraphicDesignSlideshow />
+        </section>
+
+        {/* Project grid */}
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3">
+            {filteredProjects.map((project, index) => {
+              const demoUrl =
+                project.url?.live && project.live
+                  ? liveUrl(project.url.live)
+                  : null;
+
+              return (
+                <article
+                  key={`${project.title}-${index}`}
+                  className={`group flex min-w-0 flex-col overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                    cardStyle
+                  } ${
+                    isDarkMode
+                      ? "hover:shadow-purple-950/20"
+                      : "hover:shadow-purple-100"
+                  }`}
+                >
+                  {/* Project image */}
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={`${project.title} project preview`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        onError={(event) => {
+                          event.currentTarget.style.display = "none";
+                        }}
+                      />
+                    ) : (
+                      <div
+                        className={`flex h-full w-full items-center justify-center ${
+                          isDarkMode ? "bg-white/5" : "bg-gray-100"
+                        }`}
+                      >
+                        <span className={`text-sm ${mutedColor}`}>
+                          Preview coming soon
+                        </span>
+                      </div>
+                    )}
+
+                    {project.category && (
+                      <span className="absolute left-3 top-3 rounded-full border border-white/20 bg-black/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+                        {project.category}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Project information */}
+                  <div className="flex flex-1 flex-col p-5 sm:p-6">
+                    <h2
+                      className={`text-xl font-bold transition-colors group-hover:text-purple-400 ${headingColor}`}
+                    >
+                      {project.title}
+                    </h2>
+
+                    <p
+                      className={`mt-3 flex-1 text-sm leading-7 ${mutedColor}`}
+                    >
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    {project.languages?.length > 0 && (
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {project.languages.map((language, languageIndex) => (
+                          <span
+                            key={`${language}-${languageIndex}`}
+                            className={`rounded-md border px-2.5 py-1 text-xs font-medium ${tagStyle}`}
+                          >
+                            {language}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Project links */}
+                    <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-current/10 pt-5">
+                      {demoUrl && (
+                        <a
+                          href={demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center rounded-lg bg-purple-600 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-purple-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2"
+                        >
+                          View Live{" "}
+                          <span className="ml-2" aria-hidden="true">
+                            ↗
+                          </span>
+                        </a>
+                      )}
+
+                      {project.url?.github && (
+                        <a
+                          href={project.url.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center justify-center rounded-lg border px-4 py-2.5 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 ${
+                            isDarkMode
+                              ? "border-white/15 text-gray-200 hover:border-purple-400 hover:text-white"
+                              : "border-gray-300 text-gray-700 hover:border-purple-400 hover:text-purple-700"
+                          }`}
+                        >
+                          GitHub{" "}
+                          <span className="ml-2" aria-hidden="true">
+                            ↗
+                          </span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <div
+            className={`rounded-2xl border border-dashed p-10 text-center ${
+              isDarkMode ? "border-white/15" : "border-gray-300"
+            }`}
+          >
+            <p className={`text-base ${mutedColor}`}>
+              No projects found in this category.
+            </p>
+            <button
+              type="button"
+              onClick={() => setSelectedCategory("All")}
+              className="mt-4 text-sm font-semibold text-purple-400 hover:text-purple-300"
+            >
+              Show all projects
+            </button>
+          </div>
         )}
-      </main>
+      </div>
     </section>
   );
 };

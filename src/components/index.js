@@ -9,6 +9,8 @@ import Contact from "./Contact";
 import Album from "./Album";
 import Certificates from "./Certificates";
 import TargetCursor from "./extra/TargetCursor";
+import FeaturedWork from "./FeaturedWork";
+import EngineeringJournal from "./EngineeringJournal";
 export {
   Header,
   Hero,
@@ -21,4 +23,6 @@ export {
   Certificates,
   Album,
   TargetCursor,
+  FeaturedWork,
+  EngineeringJournal,
 };
