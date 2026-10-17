@@ -154,7 +154,7 @@ const Hero = ({ isDarkMode, setIsDarkMode }) => {
             </a>
 
             <a
-              href="/resume/Junior%20Software%20Developer.pdf"
+              href="/resume/TIL-JUNIOR-FULL-STACK-DEVELOPER.pdf"
               download
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/60 bg-black/20 px-6 py-3 font-semibold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-purple-400 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
             >
