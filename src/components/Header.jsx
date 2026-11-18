@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { navLink } from "../constants";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaPalette } from "react-icons/fa";
 import ThemeSwitch from "./ThemeSwitch";
 
 const Header = ({ isDarkMode, setIsDarkMode }) => {
@@ -10,11 +11,17 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
 
   const linkClass = `relative text-sm font-medium transition-colors duration-200 ${
     isDarkMode
-      ? "text-gray-300 hover:text-purple-500"
+      ? "text-gray-300 hover:text-purple-400"
       : "text-gray-700 hover:text-purple-600"
   }`;
 
   const closeMenu = () => setMenuOpen(false);
+
+  const graphicDesignClass = `inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 ${
+    isDarkMode
+      ? "bg-purple-500/15 text-purple-300 hover:bg-purple-500/25"
+      : "bg-purple-100 text-purple-700 hover:bg-purple-200"
+  }`;
 
   return (
     <header
@@ -39,13 +46,24 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
         </a>
 
         {/* Desktop navigation */}
-        <div className="hidden items-center gap-7 md:flex lg:gap-9">
+        <div className="hidden items-center gap-5 md:flex lg:gap-7">
           {navLink.map((link) => (
             <a key={link.id} href={`#${link.id}`} className={linkClass}>
               {link.name}
             </a>
           ))}
 
+          {/* Graphic Design link */}
+          <Link
+            to="/graphic-design"
+            className={graphicDesignClass}
+            onClick={closeMenu}
+          >
+            <FaPalette aria-hidden="true" />
+            <span>Graphic Design</span>
+          </Link>
+
+          {/* Theme switch */}
           <div
             className={`ml-1 border-l pl-5 ${
               isDarkMode ? "border-white/15" : "border-gray-200"
@@ -90,7 +108,7 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
           } ${
             menuOpen
               ? "visible translate-y-0 opacity-100"
-              : "invisible -translate-y-2 opacity-0 pointer-events-none"
+              : "invisible pointer-events-none -translate-y-2 opacity-0"
           }`}
         >
           <div className="mx-auto flex max-w-7xl flex-col px-5 py-3 sm:px-8">
@@ -106,6 +124,16 @@ const Header = ({ isDarkMode, setIsDarkMode }) => {
                 {link.name}
               </a>
             ))}
+
+            {/* Graphic Design mobile link */}
+            <Link
+              to="/graphic-design"
+              onClick={closeMenu}
+              className={`my-3 ${graphicDesignClass}`}
+            >
+              <FaPalette aria-hidden="true" />
+              <span>Graphic Design</span>
+            </Link>
           </div>
         </div>
       </nav>

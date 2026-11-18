@@ -7,6 +7,7 @@ import {
   Timeline,
   Projects,
   Contact,
+  TechnicalSupport,
   FeaturedWork,
   EngineeringJournal,
 } from "./components";
@@ -57,6 +58,9 @@ export default function Home({ isDarkMode, setIsDarkMode }) {
           <section id="engineering journal" className="scroll-mt-24">
             <EngineeringJournal />
           </section>
+        </ScrollEffect>
+        <ScrollEffect>
+          <TechnicalSupport isDarkMode={isDarkMode} />
         </ScrollEffect>
 
         <ScrollEffect>

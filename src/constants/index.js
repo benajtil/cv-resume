@@ -84,15 +84,15 @@ const navLink = [
   //   id: "skills",
   //   name: "Skills",
   // },
-
+  { id: "technical-support", name: "Technical Support" },
   {
     id: "contact",
     name: "Contact",
   },
-  {
-    id: "album",
-    name: "Album",
-  },
+  // {
+  //   id: "album",
+  //   name: "Album",
+  // },
 ];
 const about = {
   bio: {

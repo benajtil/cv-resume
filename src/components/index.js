@@ -11,6 +11,7 @@ import Certificates from "./Certificates";
 import TargetCursor from "./extra/TargetCursor";
 import FeaturedWork from "./FeaturedWork";
 import EngineeringJournal from "./EngineeringJournal";
+import TechnicalSupport from "./TechnicalSupport";
 export {
   Header,
   Hero,
@@ -24,5 +25,6 @@ export {
   Album,
   TargetCursor,
   FeaturedWork,
+  TechnicalSupport,
   EngineeringJournal,
 };

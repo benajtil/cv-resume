@@ -55,15 +55,6 @@ const App = () => {
         hideDefaultCursor
       />
 
-      {/* Floating quick link to Graphic Design gallery */}
-      <div style={{ position: "fixed", right: 20, bottom: 10, zIndex: 9999 }}>
-        <Link
-          to="/graphic-design"
-          className="text-2xl bg-purple-300 rounded-full p-2 hover:bg-purple-400 transition-colors"
-        >
-          Graphic Design
-        </Link>
-      </div>
 
       {/* 🔹 All routes */}
       <Routes>
