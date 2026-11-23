@@ -1,106 +1,183 @@
-/* === LOADER STYLES === */
+/* =========================================
+   LOADING SCREEN
+========================================= */
+
 #loader {
   position: fixed;
   inset: 0;
-  background: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity 1s ease;
+  background: #000;
+  z-index: 999999;
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 1s ease,
+    visibility 1s ease;
 }
 
 #loader.fade-out {
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
-/* Logo mask */
+/* =========================================
+   LOGO MASK
+========================================= */
+
 .water-logo {
+  position: relative;
   width: 180px;
   height: 180px;
-  position: relative;
-  -webkit-mask: url("/src/assets/logo/logo.png") no-repeat center / contain;
-  mask: url("/src/assets/logo/logo.png") no-repeat center / contain;
   overflow: hidden;
+  isolation: isolate;
+
+  -webkit-mask-image: url("./logo.png");
+  mask-image: url("./logo.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Animated water fill */
-.water-logo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #00e5ff 0%, #0066ff 50%, #00e5ff 100%);
-  transform: translateY(100%);
-  animation: fillUp 3s ease-in-out forwards;
-}
+/* =========================================
+   WATER BODY
+========================================= */
 
-/* Optional shine */
-.water-logo::after {
-  content: "";
+.water-fill {
   position: absolute;
-  inset: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+
   background: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 0.3) 0%,
-    transparent 50%
+    180deg,
+    #72faff 0%,
+    #19d9ff 25%,
+    #009cff 60%,
+    #005ce6 100%
   );
-  mix-blend-mode: overlay;
-  animation: shimmer 2s ease-in-out infinite;
+
+  transition: height 0.08s linear;
 }
 
-/* Percentage text */
-#loading-text {
-  margin-top: 1rem;
-  color: #00e5ff;
-  font-family: system-ui, sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+/* =========================================
+   REAL CURVED WATER WAVES
+========================================= */
+
+.wave {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  width: 200%;
+  height: 36px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 36'%3E%3Cpath d='M0 18 C30 0 60 0 90 18 S150 36 180 18 V36 H0Z' fill='%23a0faff'/%3E%3C/svg%3E");
+
+  background-repeat: repeat-x;
+  background-size: 180px 36px;
+
+  animation: waveSlide 3s linear infinite;
 }
 
-/* Keyframes */
-@keyframes fillUp {
+.wave-two {
+  top: -22px;
+  opacity: 0.55;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 36'%3E%3Cpath d='M0 18 C30 36 60 36 90 18 S150 0 180 18 V36 H0Z' fill='%2300b4ff'/%3E%3C/svg%3E");
+
+  animation: waveSlide 4s linear infinite reverse;
+}
+
+@keyframes waveSlide {
   from {
-    transform: translateY(100%);
+    transform: translateX(0);
   }
+
   to {
-    transform: translateY(0%);
+    transform: translateX(-180px);
   }
 }
 
-@keyframes shimmer {
-  0% {
-    opacity: 0.3;
-    transform: translateY(10%);
-  }
-  100% {
-    opacity: 0.8;
-    transform: translateY(-10%);
-  }
+/* =========================================
+   WATER SHINE
+========================================= */
+
+.water-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.25) 48%,
+    transparent 65%
+  );
+
+  transform: translateX(-100%);
+  animation: waterShine 3s ease-in-out infinite;
 }
-/* HTML: <div class="loader"></div> */
-.loader {
-  width: fit-content;
-  font-size: 40px;
-  line-height: 1.5;
-  font-family: system-ui, sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #0000;
-  -webkit-text-stroke: 1px #000;
-  background: radial-gradient(1.13em at 50% 1.6em, #000 99%, #0000 101%)
-      calc(50% - 1.6em) 0/3.2em 100% text,
-    radial-gradient(1.13em at 50% -0.8em, #0000 99%, #000 101%) 50% 0.8em/3.2em
-      100% repeat-x text;
-  animation: l9 2s linear infinite;
-}
-.loader:before {
-  content: "Loading";
-}
-@keyframes l9 {
+
+@keyframes waterShine {
   to {
-    background-position: calc(50% + 1.6em) 0, calc(50% + 3.2em) 0.8em;
+    transform: translateX(100%);
+  }
+}
+
+/* =========================================
+   PROGRESS TEXT
+========================================= */
+
+#loading-text {
+  margin-top: 25px;
+  color: #00e5ff;
+
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+
+  text-shadow:
+    0 0 5px rgba(0, 229, 255, 0.5),
+    0 0 15px rgba(0, 229, 255, 0.6);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 480px) {
+  .water-logo {
+    width: 140px;
+    height: 140px;
+  }
+
+  #loading-text {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .wave,
+  .water-shine {
+    animation: none;
+  }
+
+  .water-fill {
+    transition: none;
   }
 }

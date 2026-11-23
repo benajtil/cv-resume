@@ -282,7 +282,6 @@ const projects = [
     description: "Minimalist and geometric branding projects.",
     image: ArtiumJ,
     languages: ["Illustrator", "Photoshop"],
-    url: "./GraphicDesign.jsx",
     category: "Graphic",
   },
 ];
